@@ -1,0 +1,19 @@
+{
+  "name": "basicauthorization_poc",
+  "version": "1.0.0",
+  "description": "Basic Authorization, nodejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "authorization"
+  ],
+  "author": "Laszlo Barabas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "morgan": "^1.8.1"
+  }
+}
