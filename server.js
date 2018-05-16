@@ -16,50 +16,12 @@ var port 	= 3030;
 var app		= express(); 
 
 // start the middleware 
-
 app.use(morgan('dev')); 
 
 
-// create a function 
-/**
- *  req: request obj
- *  resp: response obj
- *  next : to call the next middleware in the chain 
- *
- */ 
-var auth = function  (req, resp, next ){
-	console.log(req.headers); 
-	// extract the authorization header 
-	var authHeader = req.headers.authorization; 
-	
-	// if is it null 
-	if (!authHeader) {
-		var err = new Error ('You must use authorization (Basic)'); 
-		err.status = 401; 
-		next (err) ; // call the Error Middleware 
-		return; 
-	}
-
-	// format 
-	// Basic xybhhhhh:33333ddd
-	// end of format 
-	var auth 	= new Buffer (authHeader.split(' ')[1], 'base64').toString().split(':'); 
-	var user  	= auth[0]; 
-	var passwd 	= auth[1]; 
-
-	if ( user == 'admin' && passwd == 'password'){
-		next(); // athorization successfull
-	} else {
-
-		var err = new Error ('Yoou are not athenticated!'); 
-		err.status = 401; 
-		next (err); 
-	}
-}
-
 //
 // start the middleware for authentication 
-app.use(auth); 
+//app.use(auth); 
 
 // start the middleware for serving static files 
 app.use(express.static(__dirname +'/public')); 
